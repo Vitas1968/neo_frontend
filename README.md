@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# Neo Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Учебный frontend-проект: интерфейс банковского приложения по макету.
 
-Currently, two official plugins are available:
+Проект создаётся на React и TypeScript. Сейчас в репозитории находится стартовая конфигурация Vite; функциональность экранов будет добавляться поэтапно.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Технологии
 
-## React Compiler
+- React 19
+- TypeScript
+- Vite
+- ESLint
+- Prettier
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Требования
 
-## Expanding the ESLint configuration
+Перед запуском установите актуальную LTS-версию [Node.js](https://nodejs.org/).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Запуск локально
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+После запуска Vite выведет в терминал локальный адрес приложения — обычно `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+## Команды
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+| Команда | Назначение |
+| --- | --- |
+| `npm run dev` | Запускает приложение в режиме разработки. |
+| `npm run build` | Проверяет TypeScript и создаёт production-сборку в папке `dist`. |
+| `npm run preview` | Локально запускает готовую production-сборку. |
+| `npm run lint` | Проверяет код правилами ESLint. |
+| `npm run format` | Форматирует файлы с помощью Prettier. |
+| `npm run format:check` | Проверяет форматирование без изменений файлов. |
+
+## Структура проекта
+
+```text
+src/
+  assets/       # изображения и другие ресурсы приложения
+  App.tsx       # корневой React-компонент
+  App.css       # стили корневого компонента
+  main.tsx      # точка входа приложения
+  index.css     # глобальные стили
+public/         # статические файлы
 ```
+
+## Макеты
+
+В рамках задания предусмотрены три состояния интерфейса:
+
+1. Главная страница.
+2. Страница «Кредиты» с формой заявки.
+3. Страница «Кредиты» после успешной отправки заявки.
+
+## Репозиторий
+
+https://github.com/Vitas1968/neo_frontend
