@@ -22,44 +22,61 @@ export const BankCard = styled.article`
   position: relative;
   width: 395px;
   height: 227px;
-  padding: 30px 28px;
+  padding: 38px;
   overflow: hidden;
   border-radius: 30px;
   color: #ffffff;
   background: linear-gradient(135deg, #8727f5 0%, #413cf1 100%);
   box-shadow: 0 18px 34px rgba(79, 58, 241, 0.2);
 
-  &::before {
+  &::before,
+  &::after {
     position: absolute;
-    top: -115px;
-    right: -50px;
-    width: 270px;
-    height: 270px;
+    z-index: 0;
     border-radius: 50%;
-    background: rgba(209, 77, 255, 0.32);
     content: '';
+  }
+
+  &::before {
+    top: -148px;
+    right: -67px;
+    width: 284px;
+    height: 284px;
+    background: rgba(209, 77, 255, 0.32);
+  }
+
+  &::after {
+    bottom: -215px;
+    left: -88px;
+    width: 330px;
+    height: 330px;
+    background: rgba(60, 35, 211, 0.4);
   }
 `;
 
 export const CardLabel = styled.p`
   position: relative;
+  z-index: 1;
   margin: 0;
   font-size: 14px;
-  opacity: 0.85;
+  font-style: italic;
+  opacity: 0.7;
 `;
 
 export const Balance = styled.p`
   position: relative;
+  z-index: 1;
   margin: 12px 0 0;
-  font-size: 34px;
+  font-size: 32px;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 400;
 `;
 
 export const CardNumber = styled.p`
   position: absolute;
-  bottom: 28px;
-  left: 28px;
+  z-index: 1;
+  bottom: 29px;
+  left: 38px;
   margin: 0;
   font-size: 13px;
   letter-spacing: 1px;
@@ -67,30 +84,43 @@ export const CardNumber = styled.p`
 
 export const CardDate = styled.p`
   position: absolute;
-  right: 28px;
-  bottom: 28px;
+  z-index: 1;
+  right: 38px;
+  bottom: 29px;
   margin: 0;
   font-size: 13px;
 `;
 
 export const PaymentSystem = styled.div`
   position: absolute;
+  z-index: 1;
   top: 30px;
-  right: 28px;
+  right: 36px;
+  display: grid;
+  justify-items: center;
+`;
+
+export const PaymentCircles = styled.div`
   display: flex;
 `;
 
 export const PaymentCircle = styled.span<{ $color: string }>`
   display: block;
-  width: 38px;
-  height: 38px;
-  margin-left: -11px;
+  width: 32px;
+  height: 32px;
+  margin-left: -8px;
   border-radius: 50%;
   background-color: ${({ $color }) => $color};
 
   &:first-child {
     margin-left: 0;
   }
+`;
+
+export const PaymentName = styled.span`
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 10px;
 `;
 
 export const CardActions = styled.div`

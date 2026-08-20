@@ -12,6 +12,8 @@ import {
   GrowthIllustration,
   Page,
   PaymentCircle,
+  PaymentCircles,
+  PaymentName,
   PaymentSystem,
 } from './HomePage.styles';
 
@@ -21,16 +23,19 @@ export function HomePage() {
       <Content>
         <AccountSection>
           <BankCard>
-            <CardLabel>Текущий счёт</CardLabel>
-            <Balance>₽ 5 750,20</Balance>
+            <CardLabel>Баланс</CardLabel>
+            <Balance>₽5,750,20</Balance>
 
             <PaymentSystem aria-label="Mastercard">
-              <PaymentCircle $color="#ff5f00" />
-              <PaymentCircle $color="#ffba00" />
+              <PaymentCircles>
+                <PaymentCircle $color="#ff5f00" />
+                <PaymentCircle $color="#ffba00" />
+              </PaymentCircles>
+              <PaymentName>Mastercard</PaymentName>
             </PaymentSystem>
 
-            <CardNumber>5222 5555 7788 3299</CardNumber>
-            <CardDate>09/26</CardDate>
+            <CardNumber>5282 3456 7890 1289</CardNumber>
+            <CardDate>09/25</CardDate>
           </BankCard>
 
           <CardActions>
@@ -39,10 +44,7 @@ export function HomePage() {
           </CardActions>
         </AccountSection>
 
-        <GrowthIllustration
-          src={growthIllustration}
-          alt="Рост финансовых возможностей"
-        />
+        <GrowthIllustration src={growthIllustration} alt="Рост финансовых возможностей" />
       </Content>
     </Page>
   );
