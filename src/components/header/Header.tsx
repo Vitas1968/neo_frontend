@@ -38,6 +38,8 @@ export function Header() {
             <NavigationLink to="/loans">Кредиты</NavigationLink>
 
             <NavigationLink to="/services">Сервисы</NavigationLink>
+
+            <NavigationLink to="/flexbox">Flexbox page</NavigationLink>
           </Navigation>
 
           <LoanButton to="/loans">Оформить кредит</LoanButton>
