@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Header } from './components/header/Header';
 import { HomePage } from './pages/HomePage';
 import { LoansPage } from './pages/LoansPage';
+import { ServicesPage } from './pages/ServicesPage';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/services" element={<h1>Сервисы</h1>} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/loans" element={<LoansPage />} />
       </Routes>
     </>
