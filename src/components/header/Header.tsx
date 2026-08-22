@@ -1,3 +1,6 @@
+import type { ChangeEvent } from 'react';
+import type { ThemePreference } from '../../styles/theme';
+import { useThemePreference } from '../../contexts/ThemePreferenceContext';
 import {
   Brand,
   BrandMark,
@@ -10,10 +13,17 @@ import {
   NavigationLink,
   NavigationRow,
   Phone,
+  ThemeSelect,
   TopRow,
 } from './Header.styles';
 
 export function Header() {
+  const { preference, setPreference } = useThemePreference();
+
+  const handleThemeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setPreference(event.target.value as ThemePreference);
+  };
+
   return (
     <HeaderElement>
       <Container>
@@ -25,6 +35,17 @@ export function Header() {
 
           <Contacts>
             <Phone href="tel:88008000000">☎ 8 800 800-00-00</Phone>
+
+            <ThemeSelect
+              aria-label="Тема интерфейса"
+              value={preference}
+              onChange={handleThemeChange}
+            >
+              <option value="system">Системная</option>
+              <option value="light">Светлая</option>
+              <option value="dark">Тёмная</option>
+            </ThemeSelect>
+
             <Login type="button">Войти</Login>
           </Contacts>
         </TopRow>

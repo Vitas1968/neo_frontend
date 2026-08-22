@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    color-scheme: light;
+    color-scheme: ${({ theme }) => theme.mode};
   }
 
   body {

@@ -133,3 +133,13 @@ export const LoanButton = styled(NavLink)`
   font-weight: 600;
   text-decoration: none;
 `;
+
+export const ThemeSelect = styled.select`
+  padding: 6px 8px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radius.s};
+  color: ${({ theme }) => theme.colors.textContent};
+  background-color: ${({ theme }) => theme.colors.surface};
+  font-size: 12px;
+  cursor: pointer;
+`;

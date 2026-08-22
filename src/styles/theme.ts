@@ -1,4 +1,8 @@
+export type ThemePreference = 'light' | 'dark' | 'system';
+export type ResolvedTheme = Exclude<ThemePreference, 'system'>;
+
 export type AppTheme = {
+  mode: ResolvedTheme;
   colors: {
     textPrimary: string;
     textContent: string;
@@ -45,26 +49,7 @@ export type AppTheme = {
   };
 };
 
-export const theme: AppTheme = {
-  colors: {
-    textPrimary: '#1f2937',
-    textContent: '#374151',
-    textSecondary: '#6b7280',
-    textTertiary: '#9c9c9c',
-    textMuted: '#dedddd',
-    surface: '#ffffff',
-    pageBackground: '#f7f7f7',
-    surfaceMuted: '#e5e7eb',
-    surfaceAccent: '#e7e9ff',
-    primary: '#202ed7',
-    primaryHover: '#1521cf',
-    accent: '#2949ee',
-    focus: '#0138f9',
-    border: '#d7d7d7',
-    danger: '#ff0000',
-    dangerStrong: '#d92d20',
-    success: '#5d61dc',
-  },
+const sharedThemeValues = {
   spacing: {
     xs: '4px',
     s: '8px',
@@ -90,4 +75,52 @@ export const theme: AppTheme = {
   fonts: {
     primary: 'Arial, sans-serif',
   },
+};
+
+export const lightTheme: AppTheme = {
+  mode: 'light',
+  colors: {
+    textPrimary: '#1f2937',
+    textContent: '#374151',
+    textSecondary: '#6b7280',
+    textTertiary: '#9c9c9c',
+    textMuted: '#dedddd',
+    surface: '#ffffff',
+    pageBackground: '#f7f7f7',
+    surfaceMuted: '#e5e7eb',
+    surfaceAccent: '#e7e9ff',
+    primary: '#202ed7',
+    primaryHover: '#1521cf',
+    accent: '#2949ee',
+    focus: '#0138f9',
+    border: '#d7d7d7',
+    danger: '#ff0000',
+    dangerStrong: '#d92d20',
+    success: '#5d61dc',
+  },
+  ...sharedThemeValues,
+};
+
+export const darkTheme: AppTheme = {
+  mode: 'dark',
+  colors: {
+    textPrimary: '#f9fafb',
+    textContent: '#e5e7eb',
+    textSecondary: '#9ca3af',
+    textTertiary: '#a1a1aa',
+    textMuted: '#9ca3af',
+    surface: '#111827',
+    pageBackground: '#030712',
+    surfaceMuted: '#374151',
+    surfaceAccent: '#1e3a8a',
+    primary: '#818cf8',
+    primaryHover: '#6366f1',
+    accent: '#93c5fd',
+    focus: '#60a5fa',
+    border: '#374151',
+    danger: '#f87171',
+    dangerStrong: '#ef4444',
+    success: '#a5b4fc',
+  },
+  ...sharedThemeValues,
 };
