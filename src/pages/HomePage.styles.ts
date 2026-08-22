@@ -25,7 +25,7 @@ export const BankCard = styled.article`
   padding: 38px;
   overflow: hidden;
   border-radius: 30px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.surface};
   background: linear-gradient(135deg, #8727f5 0%, #413cf1 100%);
   box-shadow: 0 18px 34px rgba(79, 58, 241, 0.2);
 
@@ -133,17 +133,17 @@ export const CardActions = styled.div`
 export const ActionButton = styled.button`
   width: 227px;
   min-height: 55px;
-  border: 1px solid #2949ee;
+  border: 1px solid ${({ theme }) => theme.colors.accent};
   border-radius: 27.5px;
-  color: #2949ee;
-  background-color: #ffffff;
+  color: ${({ theme }) => theme.colors.accent};
+  background-color: ${({ theme }) => theme.colors.surface};
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 
   &:hover {
-    color: #ffffff;
-    background-color: #2949ee;
+    color: ${({ theme }) => theme.colors.surface};
+    background-color: ${({ theme }) => theme.colors.accent};
   }
 `;
 

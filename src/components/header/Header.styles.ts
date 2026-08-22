@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderElement = styled.header`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.surface};
 `;
 
 export const Container = styled.div`
@@ -23,7 +23,7 @@ export const TopRow = styled.div`
     bottom: 0;
     left: 0;
     height: 1px;
-    background-color: #d7d7d7;
+    background-color: ${({ theme }) => theme.colors.border};
     content: '';
   }
 `;
@@ -31,9 +31,9 @@ export const TopRow = styled.div`
 export const Brand = styled(NavLink)`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.s};
   margin-left: 5px;
-  color: #9c9c9c;
+  color: ${({ theme }) => theme.colors.textTertiary};
   font-size: 16px;
   text-decoration: none;
 `;
@@ -46,7 +46,7 @@ export const BrandMark = styled.span`
   overflow: hidden;
   border-radius: 50%;
   color: transparent;
-  background-color: #9c9c9c;
+  background-color: ${({ theme }) => theme.colors.textTertiary};
 
   &::before {
     position: absolute;
@@ -55,7 +55,7 @@ export const BrandMark = styled.span`
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.surface};
     content: '';
     transform: translateX(-50%);
   }
@@ -67,7 +67,7 @@ export const BrandMark = styled.span`
     width: 16px;
     height: 8px;
     border-radius: 9px 9px 5px 5px;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.surface};
     content: '';
     transform: translateX(-50%);
   }
@@ -76,20 +76,20 @@ export const BrandMark = styled.span`
 export const Contacts = styled.div`
   display: flex;
   align-items: center;
-  gap: 24px;
-  color: #9c9c9c;
+  gap: ${({ theme }) => theme.spacing.xl};
+  color: ${({ theme }) => theme.colors.textTertiary};
   font-size: 14px;
 `;
 
 export const Phone = styled.a`
-  color: #0138f9;
+  color: ${({ theme }) => theme.colors.focus};
   text-decoration: none;
 `;
 
 export const Login = styled.button`
   padding: 0;
   border: 0;
-  color: #9c9c9c;
+  color: ${({ theme }) => theme.colors.textTertiary};
   background: transparent;
   cursor: pointer;
 `;
@@ -101,19 +101,19 @@ export const NavigationRow = styled.div`
 
 export const Navigation = styled.nav`
   display: flex;
-  gap: 32px;
+  gap: ${({ theme }) => theme.spacing.xxl};
   padding-top: 37px;
 `;
 
 export const NavigationLink = styled(NavLink)`
-  color: #9c9c9c;
+  color: ${({ theme }) => theme.colors.textTertiary};
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
   text-decoration: none;
 
   &.active {
-    color: #0138f9;
+    color: ${({ theme }) => theme.colors.focus};
   }
 `;
 
@@ -125,10 +125,10 @@ export const LoanButton = styled(NavLink)`
   width: 329px;
   height: 48px;
   place-items: center;
-  border-radius: 24px;
-  color: #ffffff;
-  background-color: #1521cf;
-  box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  border-radius: ${({ theme }) => theme.spacing.xl};
+  color: ${({ theme }) => theme.colors.surface};
+  background-color: ${({ theme }) => theme.colors.primaryHover};
+  box-shadow: ${({ theme }) => theme.shadows.button};
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;

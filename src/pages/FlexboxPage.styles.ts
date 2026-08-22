@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Page = styled.main`
   min-height: calc(100vh - 90px);
-  background-color: #f7f7f7;
+  background-color: ${({ theme }) => theme.colors.pageBackground};
 `;
 
 export const Container = styled.div`
@@ -12,11 +12,11 @@ export const Container = styled.div`
 
   h1 {
     margin: 0;
-    color: #1f2937;
+    color: ${({ theme }) => theme.colors.textPrimary};
     font-size: 36px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: min(calc(100% - 32px), 1100px);
     padding-top: 32px;
   }
@@ -24,28 +24,28 @@ export const Container = styled.div`
 
 export const Description = styled.p`
   margin: 12px 0 40px;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 export const Section = styled.section`
-  margin-top: 32px;
+  margin-top: ${({ theme }) => theme.spacing.xxl};
 `;
 
 export const SectionTitle = styled.h2`
-  margin: 0 0 16px;
-  color: #1f2937;
+  margin: 0 0 ${({ theme }) => theme.spacing.l};
+  color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 22px;
 `;
 
 export const Example = styled.div`
-  padding: 24px;
-  border-radius: 16px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+  padding: ${({ theme }) => theme.spacing.xl};
+  border-radius: ${({ theme }) => theme.radius.l};
+  background-color: ${({ theme }) => theme.colors.surface};
+  box-shadow: ${({ theme }) => theme.shadows.card};
 `;
 
 export const ExampleTitle = styled.p`
-  margin: 0 0 16px;
+  margin: 0 0 ${({ theme }) => theme.spacing.l};
   color: #374151;
 `;
 
@@ -57,12 +57,11 @@ export const FlexContainer = styled.div<{
 }>`
   display: flex;
   min-height: 160px;
-  gap: 12px;
-  padding: 16px;
+  gap: ${({ theme }) => theme.spacing.m};
+  padding: ${({ theme }) => theme.spacing.l};
   border: 2px dashed #a5b4fc;
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radius.m};
   background-color: #eef2ff;
-
   flex-direction: ${({ $direction }) => $direction ?? 'row'};
   justify-content: ${({ $justify }) => $justify ?? 'flex-start'};
   align-items: ${({ $align }) => $align ?? 'stretch'};
@@ -75,9 +74,9 @@ export const FlexItem = styled.div`
   min-height: 70px;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  color: #ffffff;
-  background-color: #202ed7;
+  border-radius: ${({ theme }) => theme.radius.s};
+  color: ${({ theme }) => theme.colors.surface};
+  background-color: ${({ theme }) => theme.colors.primary};
   font-size: 20px;
   font-weight: 700;
 `;

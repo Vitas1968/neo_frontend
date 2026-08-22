@@ -13,9 +13,9 @@ export const GlobalStyle = createGlobalStyle`
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
-    color: #1f2937;
-    background-color: #ffffff;
-    font-family: Arial, sans-serif;
+    color: ${({ theme }) => theme.colors.textPrimary};
+    background-color: ${({ theme }) => theme.colors.surface};
+    font-family: ${({ theme }) => theme.fonts.primary};
   }
 
   #root {

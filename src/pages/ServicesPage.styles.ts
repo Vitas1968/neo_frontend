@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Page = styled.main`
   min-height: calc(100vh - 90px);
-  background-color: #f7f7f7;
+  background-color: ${({ theme }) => theme.colors.pageBackground};
 `;
 
 export const Container = styled.div`
@@ -12,52 +12,55 @@ export const Container = styled.div`
 
   > h1 {
     margin: 0;
-    color: #1f2937;
+    color: ${({ theme }) => theme.colors.textPrimary};
     font-size: 36px;
   }
 
   > p {
     margin: 12px 0 40px;
-    color: #6b7280;
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 32px 24px;
   }
 `;
 
 export const Section = styled.section`
-  margin: 32px 0;
+  margin: ${({ theme }) => theme.spacing.xxl} 0;
 `;
 
 export const SectionTitle = styled.h2`
-  margin: 0 0 24px;
-  color: #1f2937;
+  margin: 0 0 ${({ theme }) => theme.spacing.xl};
+  color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 24px;
 `;
 
 export const Divider = styled.hr`
   border: 0;
-  border-top: 1px solid #d7d7d7;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const ButtonGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing.m};
 `;
 
 export const Button = styled.button<{
   $variant?: 'secondary' | 'danger';
 }>`
   padding: 12px 20px;
-  border: 1px solid ${({ $variant }) => ($variant === 'secondary' ? '#202ed7' : 'transparent')};
+  border: 1px solid
+    ${({ $variant, theme }) => ($variant === 'secondary' ? theme.colors.primary : 'transparent')};
   border-radius: 24px;
-  color: ${({ $variant }) => ($variant === 'secondary' ? '#202ed7' : '#ffffff')};
-  background-color: ${({ $variant }) => {
-    if ($variant === 'secondary') return '#ffffff';
-    if ($variant === 'danger') return '#d92d20';
-    return '#202ed7';
+  color: ${({ $variant, theme }) =>
+    $variant === 'secondary' ? theme.colors.primary : theme.colors.surface};
+  background-color: ${({ $variant, theme }) => {
+    if ($variant === 'secondary') return theme.colors.surface;
+    if ($variant === 'danger') return theme.colors.dangerStrong;
+
+    return theme.colors.primary;
   }};
   font-size: 14px;
   font-weight: 600;
@@ -75,51 +78,52 @@ export const Button = styled.button<{
 
 export const Tabs = styled.div`
   display: flex;
-  gap: 8px;
-  margin-top: 24px;
+  gap: ${({ theme }) => theme.spacing.s};
+  margin-top: ${({ theme }) => theme.spacing.xl};
 `;
 
 export const Tab = styled.button<{ $active: boolean }>`
   padding: 8px 16px;
   border: 0;
   border-radius: 18px;
-  color: ${({ $active }) => ($active ? '#ffffff' : '#374151')};
-  background-color: ${({ $active }) => ($active ? '#202ed7' : '#e5e7eb')};
+  color: ${({ $active, theme }) => ($active ? theme.colors.surface : theme.colors.textContent)};
+  background-color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary : theme.colors.surfaceMuted};
   cursor: pointer;
 `;
 
 export const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
+  gap: ${({ theme }) => theme.spacing.s};
+  margin-top: ${({ theme }) => theme.spacing.xl};
 `;
 
 export const Badge = styled.span`
   padding: 6px 10px;
-  border-radius: 16px;
-  color: #202ed7;
-  background-color: #e7e9ff;
+  border-radius: ${({ theme }) => theme.spacing.l};
+  color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.surfaceAccent};
   font-size: 12px;
   font-weight: 600;
 `;
 
 export const Tag = styled.span`
   padding: 6px 10px;
-  border: 1px solid #d7d7d7;
-  border-radius: 16px;
-  color: #374151;
-  background-color: #ffffff;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.spacing.l};
+  color: ${({ theme }) => theme.colors.textContent};
+  background-color: ${({ theme }) => theme.colors.surface};
   font-size: 12px;
 `;
 
 export const Alert = styled.div`
-  margin-top: 24px;
-  padding: 16px;
-  border-left: 4px solid #202ed7;
-  border-radius: 8px;
-  color: #1f2937;
-  background-color: #e7e9ff;
+  margin-top: ${({ theme }) => theme.spacing.xl};
+  padding: ${({ theme }) => theme.spacing.l};
+  border-left: 4px solid ${({ theme }) => theme.colors.primary};
+  border-radius: ${({ theme }) => theme.radius.s};
+  color: ${({ theme }) => theme.colors.textPrimary};
+  background-color: ${({ theme }) => theme.colors.surfaceAccent};
 `;
 
 export const FormGrid = styled.div`
@@ -127,7 +131,7 @@ export const FormGrid = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
 `;
@@ -135,30 +139,30 @@ export const FormGrid = styled.div`
 export const Field = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.s};
   margin-top: 20px;
 `;
 
 export const FieldLabel = styled.label`
-  color: #374151;
+  color: ${({ theme }) => theme.colors.textContent};
   font-size: 14px;
   font-weight: 600;
 `;
 
 export const Label = FieldLabel;
 
-const controlStyles = `
+const controlStyles = css`
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid #d7d7d7;
-  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radius.s};
   outline: none;
-  color: #1f2937;
-  background-color: #ffffff;
+  color: ${({ theme }) => theme.colors.textPrimary};
+  background-color: ${({ theme }) => theme.colors.surface};
   font: inherit;
 
   &:focus {
-    border-color: #202ed7;
+    border-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -176,22 +180,22 @@ export const Textarea = styled.textarea`
 `;
 
 export const HelperText = styled.span`
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 12px;
 `;
 
 export const InputGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 24px;
+  gap: ${({ theme }) => theme.spacing.xl};
+  margin-top: ${({ theme }) => theme.spacing.xl};
 `;
 
 export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #374151;
+  gap: ${({ theme }) => theme.spacing.s};
+  color: ${({ theme }) => theme.colors.textContent};
   cursor: pointer;
 `;
 
@@ -199,19 +203,19 @@ export const Checkbox = styled.input`
   width: 16px;
   height: 16px;
   margin: 0;
-  accent-color: #202ed7;
+  accent-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const RadioGroup = styled.div`
   display: flex;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing.l};
 `;
 
 export const RadioLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #374151;
+  gap: ${({ theme }) => theme.spacing.s};
+  color: ${({ theme }) => theme.colors.textContent};
   cursor: pointer;
 `;
 
@@ -219,14 +223,14 @@ export const Radio = styled.input`
   width: 16px;
   height: 16px;
   margin: 0;
-  accent-color: #202ed7;
+  accent-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const SwitchLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #374151;
+  gap: ${({ theme }) => theme.spacing.s};
+  color: ${({ theme }) => theme.colors.textContent};
   cursor: pointer;
 `;
 
@@ -234,12 +238,12 @@ export const Switch = styled.input`
   width: 38px;
   height: 20px;
   margin: 0;
-  accent-color: #202ed7;
+  accent-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Slider = styled.input`
   width: 260px;
-  accent-color: #202ed7;
+  accent-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const CardGrid = styled.div`
@@ -247,70 +251,70 @@ export const CardGrid = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
 `;
 
 export const Card = styled.article`
-  padding: 24px;
-  border-radius: 16px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+  padding: ${({ theme }) => theme.spacing.xl};
+  border-radius: ${({ theme }) => theme.radius.l};
+  background-color: ${({ theme }) => theme.colors.surface};
+  box-shadow: ${({ theme }) => theme.shadows.card};
 
   h2 {
-    margin: 0 0 16px;
-    color: #374151;
+    margin: 0 0 ${({ theme }) => theme.spacing.l};
+    color: ${({ theme }) => theme.colors.textContent};
     font-size: 16px;
   }
 
   strong {
-    color: #1f2937;
+    color: ${({ theme }) => theme.colors.textPrimary};
     font-size: 28px;
   }
 
   p {
-    margin: 12px 0 0;
-    color: #6b7280;
+    margin: ${({ theme }) => theme.spacing.m} 0 0;
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 `;
 
 export const Progress = styled.div`
   height: 12px;
   overflow: hidden;
-  border-radius: 8px;
-  background-color: #e5e7eb;
+  border-radius: ${({ theme }) => theme.radius.s};
+  background-color: ${({ theme }) => theme.colors.surfaceMuted};
 `;
 
 export const ProgressBar = styled.div`
   width: 60%;
   height: 100%;
   border-radius: inherit;
-  background-color: #202ed7;
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Table = styled.table`
   width: 100%;
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing.xl};
   border-collapse: collapse;
   overflow: hidden;
-  border-radius: 12px;
-  background-color: #ffffff;
+  border-radius: ${({ theme }) => theme.radius.m};
+  background-color: ${({ theme }) => theme.colors.surface};
 
   th,
   td {
-    padding: 16px;
-    border-bottom: 1px solid #e5e7eb;
+    padding: ${({ theme }) => theme.spacing.l};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.surfaceMuted};
     text-align: left;
   }
 
   th {
-    color: #6b7280;
+    color: ${({ theme }) => theme.colors.textSecondary};
     font-size: 12px;
   }
 
   td {
-    color: #374151;
+    color: ${({ theme }) => theme.colors.textContent};
     font-size: 14px;
   }
 `;
@@ -321,27 +325,27 @@ export const ModalBackdrop = styled.div`
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: ${({ theme }) => theme.spacing.xl};
   background-color: rgb(0 0 0 / 45%);
 `;
 
 export const Modal = styled.div`
   width: min(100%, 420px);
-  border-radius: 16px;
-  background-color: #ffffff;
-  box-shadow: 0 20px 40px rgb(0 0 0 / 20%);
+  border-radius: ${({ theme }) => theme.radius.l};
+  background-color: ${({ theme }) => theme.colors.surface};
+  box-shadow: ${({ theme }) => theme.shadows.modal};
 `;
 
 export const ModalContent = styled.div`
-  padding: 32px;
+  padding: ${({ theme }) => theme.spacing.xxl};
 
   h2 {
     margin: 0;
-    color: #1f2937;
+    color: ${({ theme }) => theme.colors.textPrimary};
   }
 
   p {
-    margin: 16px 0 24px;
-    color: #6b7280;
+    margin: ${({ theme }) => theme.spacing.l} 0 ${({ theme }) => theme.spacing.xl};
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
 `;
