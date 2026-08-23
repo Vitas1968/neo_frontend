@@ -4,56 +4,56 @@
 
 ## Реализовано
 
-* Главная страница с информацией о счёте и банковской картой.
-* Общая шапка с навигацией.
-* Маршруты:
+- Главная страница со счётом, банковской картой и иллюстрацией.
+- Общая шапка с навигацией и переключателем темы.
+- Форма заявки на кредит с нативной проверкой обязательных полей.
+- Сообщение об успешной отправке заявки с автоматическим закрытием через 10 секунд.
+- Светлая, тёмная и системная темы. Выбор сохраняется в `localStorage`; системный режим отслеживает настройку ОС.
+- Экран `ServicesPage` — песочница компонентов интерфейса.
+- Экран `FlexboxPage` — практика свойств Flexbox.
+- Стили в отдельных файлах `*.styles.ts` через `styled-components`.
 
-  * `/` — главная страница;
-  * `/loans` — форма заявки на кредит;
-  * `/services` — временная страница сервисов.
-* Форма заявки на кредит:
+## Маршруты
 
-  * сумма;
-  * срок;
-  * ежемесячный доход;
-  * адрес регистрации;
-  * место работы;
-  * согласия на обработку персональных данных и рассылку.
-* Нативная проверка обязательных полей браузером.
-* Модальное окно об успешном оформлении заявки, автоматически закрывающееся через 10 секунд.
-* Стили компонентов вынесены в отдельные файлы `*.styles.ts` с помощью `styled-components`.
+| Путь | Страница | Назначение |
+| --- | --- | --- |
+| `/` | `HomePage` | Главная страница |
+| `/loans` | `LoansPage` | Заявка на кредит |
+| `/services` | `ServicesPage` | UI-песочница |
+| `/flexbox` | `FlexboxPage` | Практика Flexbox |
 
 ## Стек
 
-* React 19
-* TypeScript
-* Vite
-* React Router DOM
-* styled-components
-* ESLint
-* Prettier
+- React 19
+- TypeScript
+- Vite
+- React Router DOM
+- Redux Toolkit + React Redux
+- styled-components
+- ESLint
+- Prettier
 
 ## Запуск проекта
 
-Требуется установленный [Node.js](https://nodejs.org/) рекомендуемой LTS-версии.
+Требуется Node.js LTS.
 
 ```bash
 npm install
 npm run dev
 ```
 
-После запуска приложение будет доступно по адресу, который выведет Vite в терминале. Обычно это `http://localhost:5173`.
+После запуска Vite выведет адрес приложения. Обычно это `http://localhost:5173`.
 
 ## Команды
 
-| Команда                | Назначение                                                       |
-| ---------------------- | ---------------------------------------------------------------- |
-| `npm run dev`          | Запускает приложение в режиме разработки.                        |
-| `npm run build`        | Проверяет TypeScript и создаёт production-сборку в папке `dist`. |
-| `npm run preview`      | Запускает локально готовую production-сборку.                    |
-| `npm run lint`         | Проверяет код правилами ESLint.                                  |
-| `npm run format`       | Форматирует файлы с помощью Prettier.                            |
-| `npm run format:check` | Проверяет форматирование без изменения файлов.                   |
+| Команда | Назначение |
+| --- | --- |
+| `npm run dev` | Запуск приложения в режиме разработки |
+| `npm run build` | Проверка TypeScript и production-сборка в `dist` |
+| `npm run preview` | Локальный запуск production-сборки |
+| `npm run lint` | Проверка кода правилами ESLint |
+| `npm run format` | Форматирование файлов через Prettier |
+| `npm run format:check` | Проверка форматирования без изменения файлов |
 
 ## Структура проекта
 
@@ -68,23 +68,59 @@ src/
 │   └── loan-success-modal/
 │       ├── LoanSuccessModal.tsx
 │       └── LoanSuccessModal.styles.ts
+├── features/
+│   └── theme/
+│       └── themeSlice.ts
 ├── pages/
+│   ├── FlexboxPage.tsx
+│   ├── FlexboxPage.styles.ts
 │   ├── HomePage.tsx
 │   ├── HomePage.styles.ts
 │   ├── LoansPage.tsx
-│   └── LoansPage.styles.ts
+│   ├── LoansPage.styles.ts
+│   ├── ServicesPage.tsx
+│   └── ServicesPage.styles.ts
+├── providers/
+│   └── AppThemeProvider.tsx
+├── store/
+│   ├── hooks.ts
+│   └── store.ts
 ├── styles/
-│   └── GlobalStyle.ts
+│   ├── GlobalStyle.ts
+│   ├── styled.d.ts
+│   └── theme.ts
 ├── App.tsx
 └── main.tsx
 ```
 
+## Управление темой
+
+`themeSlice` хранит выбранный режим: `light`, `dark` или `system`.
+
+```text
+Header
+  → dispatch(setPreference(...))
+  → Redux store
+  → AppThemeProvider
+  → styled-components ThemeProvider
+  → CSS-токены компонентов
+```
+
+`AppThemeProvider` выбирает объект `lightTheme` или `darkTheme` и передаёт его в `styled-components`. Компоненты используют токены темы, например:
+
+```ts
+color: ${({ theme }) => theme.colors.textPrimary};
+```
+
+Redux DevTools позволяет просматривать состояние `theme.preference` и actions `theme/setPreference` во время разработки.
+
 ## Основные компоненты
 
-* `App.tsx` — подключает маршруты приложения.
-* `Header` — общая шапка и навигация.
-* `HomePage` — главная страница.
-* `LoansPage` — форма заявки и управление отображением модального окна.
-* `LoanSuccessModal` — сообщение об успешном оформлении заявки.
-* `GlobalStyle` — глобальные CSS-правила приложения.
-
+- `App.tsx` — маршруты приложения.
+- `Header` — шапка, навигация и выбор темы.
+- `HomePage` — главная страница.
+- `LoansPage` — форма заявки и управление модальным окном.
+- `LoanSuccessModal` — сообщение об успешной отправке заявки.
+- `AppThemeProvider` — выбирает активную тему и передаёт её в `styled-components`.
+- `themeSlice` — Redux-состояние выбранного режима темы.
+- `GlobalStyle` — глобальные CSS-правила приложения.
