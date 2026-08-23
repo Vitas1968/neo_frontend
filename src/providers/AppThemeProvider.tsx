@@ -1,7 +1,8 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme, type ResolvedTheme, type ThemePreference } from '../styles/theme';
-import { ThemePreferenceContext } from '../contexts/ThemePreferenceContext';
+import { selectThemePreference } from '../features/theme/themeSlice';
+import { useAppSelector } from '../store/hooks';
+import { darkTheme, lightTheme, type ResolvedTheme } from '../styles/theme';
 
 const STORAGE_KEY = 'theme-preference';
 
@@ -9,18 +10,8 @@ function getSystemTheme(): ResolvedTheme {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
-function isThemePreference(value: string | null): value is ThemePreference {
-  return value === 'light' || value === 'dark' || value === 'system';
-}
-
-function getInitialPreference(): ThemePreference {
-  const storedPreference = localStorage.getItem(STORAGE_KEY);
-
-  return isThemePreference(storedPreference) ? storedPreference : 'system';
-}
-
 export function AppThemeProvider({ children }: { children: ReactNode }) {
-  const [preference, setPreference] = useState<ThemePreference>(getInitialPreference);
+  const preference = useAppSelector(selectThemePreference);
   const [systemTheme, setSystemTheme] = useState<ResolvedTheme>(getSystemTheme);
 
   useEffect(() => {
@@ -44,9 +35,5 @@ export function AppThemeProvider({ children }: { children: ReactNode }) {
   const resolvedTheme = preference === 'system' ? systemTheme : preference;
   const currentTheme = resolvedTheme === 'dark' ? darkTheme : lightTheme;
 
-  return (
-    <ThemePreferenceContext.Provider value={{ preference, setPreference }}>
-      <StyledThemeProvider theme={currentTheme}>{children}</StyledThemeProvider>
-    </ThemePreferenceContext.Provider>
-  );
+  return <StyledThemeProvider theme={currentTheme}>{children}</StyledThemeProvider>;
 }

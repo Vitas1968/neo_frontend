@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react';
+import { selectThemePreference, setPreference } from '../../features/theme/themeSlice';
 import type { ThemePreference } from '../../styles/theme';
-import { useThemePreference } from '../../contexts/ThemePreferenceContext';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   Brand,
   BrandMark,
@@ -18,10 +19,11 @@ import {
 } from './Header.styles';
 
 export function Header() {
-  const { preference, setPreference } = useThemePreference();
+  const dispatch = useAppDispatch();
+  const preference = useAppSelector(selectThemePreference);
 
   const handleThemeChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setPreference(event.target.value as ThemePreference);
+    dispatch(setPreference(event.target.value as ThemePreference));
   };
 
   return (
