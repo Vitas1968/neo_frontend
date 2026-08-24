@@ -63,6 +63,8 @@ export function Header() {
             <NavigationLink to="/services">Сервисы</NavigationLink>
 
             <NavigationLink to="/flexbox">Flexbox page</NavigationLink>
+
+            <NavigationLink to="/grid">Grid page</NavigationLink>
           </Navigation>
 
           <LoanButton to="/loans">Оформить кредит</LoanButton>
