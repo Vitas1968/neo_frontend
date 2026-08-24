@@ -31,9 +31,14 @@ export const Section = styled.section`
 `;
 
 export const SectionTitle = styled.h2`
+  display: inline-block;
   margin: 0 0 ${({ theme }) => theme.spacing.xl};
+  padding: ${({ theme }) => theme.spacing.s};
   color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 24px;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: ${({ theme }) => theme.spacing.m};
+  background-color: ${({ theme }) => theme.colors.surfaceAccent};
 `;
 
 export const Divider = styled.hr`
@@ -206,6 +211,16 @@ export const Checkbox = styled.input`
   accent-color: ${({ theme }) => theme.colors.primary};
 `;
 
+export const ColorPicker = styled.input.attrs({ type: 'color' })`
+  width: 44px;
+  height: 32px;
+  padding: 3px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radius.s};
+  background-color: ${({ theme }) => theme.colors.surface};
+  cursor: pointer;
+`;
+
 export const RadioGroup = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing.l};
@@ -241,9 +256,9 @@ export const Switch = styled.input`
   accent-color: ${({ theme }) => theme.colors.primary};
 `;
 
-export const Slider = styled.input`
+export const Slider = styled.input<{ $color: string }>`
   width: 260px;
-  accent-color: ${({ theme }) => theme.colors.primary};
+  accent-color: ${({ $color }) => $color};
 `;
 
 export const CardGrid = styled.div`

@@ -9,6 +9,8 @@ import {
   Page,
   Section,
   SectionTitle,
+  Ticker,
+  TickerText,
 } from './FlexboxPage.styles';
 
 export function FlexboxPage() {
@@ -19,6 +21,10 @@ export function FlexboxPage() {
         <Description>
           Здесь можно менять свойства в файле стилей и сразу смотреть результат.
         </Description>
+
+        <Ticker>
+          <TickerText>Важное сообщение движется справа налево</TickerText>
+        </Ticker>
 
         <Section>
           <SectionTitle>1. Базовый Flexbox</SectionTitle>

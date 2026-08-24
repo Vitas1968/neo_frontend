@@ -38,11 +38,14 @@ import {
   Tag,
   Tags,
   Textarea,
+  ColorPicker,
 } from './ServicesPage.styles';
 
 export function ServicesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('Все');
+  const [selectedColor, setSelectedColor] = useState('#66ff1a');
+  const [isProgressCardVisible, setIsProgressCardVisible] = useState(true);
 
   return (
     <Page>
@@ -139,8 +142,12 @@ export function ServicesPage() {
 
           <InputGroup>
             <CheckboxLabel>
-              <Checkbox type="checkbox" defaultChecked />
-              Чекбокс
+              <Checkbox
+                type="checkbox"
+                checked={isProgressCardVisible}
+                onChange={(event) => setIsProgressCardVisible(event.target.checked)}
+              />
+              Скрыть прогресс
             </CheckboxLabel>
 
             <RadioGroup>
@@ -159,11 +166,27 @@ export function ServicesPage() {
               <Switch type="checkbox" />
               Переключатель
             </SwitchLabel>
+
+            <SwitchLabel>
+              <ColorPicker
+                value={selectedColor}
+                aria-label="Выберите цвет"
+                onChange={(event) => setSelectedColor(event.target.value)}
+              />
+              Выбор цвета слайдера
+            </SwitchLabel>
           </InputGroup>
 
           <Field>
             <Label htmlFor="range">Слайдер</Label>
-            <Slider id="range" type="range" min="0" max="100" defaultValue="60" />
+            <Slider
+              id="range"
+              type="range"
+              min="0"
+              max="100"
+              defaultValue="60"
+              $color={selectedColor}
+            />
           </Field>
         </Section>
 
@@ -184,14 +207,15 @@ export function ServicesPage() {
               <strong>3</strong>
               <p>Активные заявки</p>
             </Card>
-
-            <Card>
-              <h2>Прогресс</h2>
-              <Progress>
-                <ProgressBar />
-              </Progress>
-              <p>Выполнено 60%</p>
-            </Card>
+            {isProgressCardVisible && (
+              <Card>
+                <h2>Прогресс</h2>
+                <Progress>
+                  <ProgressBar />
+                </Progress>
+                <p>Выполнено 60%</p>
+              </Card>
+            )}
           </CardGrid>
 
           <Table>

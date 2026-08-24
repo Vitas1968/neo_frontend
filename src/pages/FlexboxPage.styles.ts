@@ -85,3 +85,32 @@ export const FlexItemWide = styled(FlexItem)`
   min-height: 120px;
   background-color: #7c3aed;
 `;
+
+export const Ticker = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+export const TickerText = styled.span`
+  display: inline-block;
+  animation:
+    ticker 5s linear 3 forwards,
+    hide 1ms linear 15s forwards;
+
+  @keyframes ticker {
+    from {
+      transform: translateX(300%);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes hide {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+`;
