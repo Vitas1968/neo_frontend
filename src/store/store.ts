@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { themeReducer } from '../features/theme/themeSlice';
+import { loanApplicationReducer } from '../features/loan/loanApplicationSlice';
+
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
+    loanApplication: loanApplicationReducer,
   },
 });
 

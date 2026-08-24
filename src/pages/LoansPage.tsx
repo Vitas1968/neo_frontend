@@ -1,6 +1,15 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { LoanSuccessModal } from '../components/loan-success-modal/LoanSuccessModal';
 import {
+  LOAN_APPLICATION_STORAGE_KEY,
+  type LoanConsentField,
+  type LoanTextField,
+  selectLoanApplication,
+  setLoanConsent,
+  setLoanTextField,
+} from '../features/loan/loanApplicationSlice';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import {
   Checkbox,
   CheckboxLabel,
   ConsentGroup,
@@ -16,7 +25,13 @@ import {
 } from './LoansPage.styles';
 
 export function LoansPage() {
+  const dispatch = useAppDispatch();
+  const loanApplication = useAppSelector(selectLoanApplication);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem(LOAN_APPLICATION_STORAGE_KEY, JSON.stringify(loanApplication));
+  }, [loanApplication]);
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -31,6 +46,14 @@ export function LoansPage() {
       window.clearTimeout(timeoutId);
     };
   }, [isModalOpen]);
+
+  function handleTextFieldChange(field: LoanTextField, value: string) {
+    dispatch(setLoanTextField({ field, value }));
+  }
+
+  function handleConsentChange(field: LoanConsentField, value: boolean) {
+    dispatch(setLoanConsent({ field, value }));
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -52,6 +75,8 @@ export function LoansPage() {
               placeholder="Введите сумму"
               min="1"
               required
+              value={loanApplication.amount}
+              onChange={(event) => handleTextFieldChange('amount', event.target.value)}
             />
           </Field>
 
@@ -66,6 +91,8 @@ export function LoansPage() {
               placeholder="Введите срок"
               min="1"
               required
+              value={loanApplication.term}
+              onChange={(event) => handleTextFieldChange('term', event.target.value)}
             />
           </Field>
 
@@ -80,6 +107,8 @@ export function LoansPage() {
               placeholder="Введите доход"
               min="1"
               required
+              value={loanApplication.income}
+              onChange={(event) => handleTextFieldChange('income', event.target.value)}
             />
           </Field>
 
@@ -93,6 +122,8 @@ export function LoansPage() {
               type="text"
               placeholder="Введите адрес"
               required
+              value={loanApplication.address}
+              onChange={(event) => handleTextFieldChange('address', event.target.value)}
             />
           </Field>
 
@@ -106,6 +137,8 @@ export function LoansPage() {
               type="text"
               placeholder="Введите наименование организации"
               required
+              value={loanApplication.workplace}
+              onChange={(event) => handleTextFieldChange('workplace', event.target.value)}
             />
             <ErrorText>* обязательное поле для заполнения</ErrorText>
           </Field>
@@ -115,15 +148,23 @@ export function LoansPage() {
               <Checkbox
                 type="checkbox"
                 name="personalDataConsent"
-                defaultChecked
                 required
+                checked={loanApplication.personalDataConsent}
+                onChange={(event) =>
+                  handleConsentChange('personalDataConsent', event.target.checked)
+                }
               />
               Согласен на обработку персональных данных
               <RequiredMark>*</RequiredMark>
             </CheckboxLabel>
 
             <CheckboxLabel>
-              <Checkbox type="checkbox" name="mailingConsent" />
+              <Checkbox
+                type="checkbox"
+                name="mailingConsent"
+                checked={loanApplication.mailingConsent}
+                onChange={(event) => handleConsentChange('mailingConsent', event.target.checked)}
+              />
               Согласен на рассылку
             </CheckboxLabel>
           </ConsentGroup>
