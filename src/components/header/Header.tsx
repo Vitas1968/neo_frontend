@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import { LanguageSwitcher } from '../language-switcher/LanguageSwitcher';
 import { selectThemePreference, setPreference } from '../../features/theme/themeSlice';
 import type { ThemePreference } from '../../styles/theme';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -47,6 +48,8 @@ export function Header() {
               <option value="light">Светлая</option>
               <option value="dark">Тёмная</option>
             </ThemeSelect>
+
+            <LanguageSwitcher />
 
             <Login type="button">Войти</Login>
           </Contacts>
