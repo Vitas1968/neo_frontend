@@ -7,9 +7,9 @@ export const en = {
 
       contactData: 'Contact details',
       firstName: 'First name',
-      firstNamePlaceholder: 'Vitaliy',
+      firstNamePlaceholder: 'Sergey',
       lastName: 'Last name',
-      lastNamePlaceholder: 'Dorofeev',
+      lastNamePlaceholder: 'Petrov',
       email: 'Email',
       emailPlaceholder: 'name@example.com',
       phone: 'Phone',

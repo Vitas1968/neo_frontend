@@ -7,9 +7,9 @@ export const ru = {
 
       contactData: 'Контактные данные',
       firstName: 'Имя',
-      firstNamePlaceholder: 'Виталий',
+      firstNamePlaceholder: 'Сергей',
       lastName: 'Фамилия',
-      lastNamePlaceholder: 'Дорофеев',
+      lastNamePlaceholder: 'Петров',
       email: 'Электронная почта',
       emailPlaceholder: 'name@example.com',
       phone: 'Телефон',
