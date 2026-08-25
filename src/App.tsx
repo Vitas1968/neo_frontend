@@ -5,6 +5,7 @@ import { LoansPage } from './pages/LoansPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { FlexboxPage } from './pages/FlexboxPage';
 import { GridPage } from './pages/GridPage';
+import { ParentChildPage } from './pages/ParentChildPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/loans" element={<LoansPage />} />
         <Route path="/flexbox" element={<FlexboxPage />} />
         <Route path="/grid" element={<GridPage />} />
+        <Route path="/parent-child" element={<ParentChildPage />} />
       </Routes>
     </>
   );

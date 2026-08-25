@@ -51,5 +51,27 @@ export const ru = {
       confirm: 'Подтвердить заказ',
       securityText: 'Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных.',
     },
+    parentChild: {
+  title: 'Родитель и потомок',
+  subtitle: 'Страница для изучения передачи props и callbacks между компонентами.',
+
+  parent: 'Родитель',
+  parentTitle: 'ParentChildPage',
+  parentExplanation:
+    'Родитель хранит состояние name и передаёт его потомку через props.',
+  parentInputLabel: 'Изменить name в родителе',
+  parentState: 'Состояние родителя',
+
+  child: 'Потомок',
+  childTitle: 'Child',
+  childExplanation:
+    'Потомок получает name через props и вызывает callbacks, переданные родителем.',
+  receivedName: 'Получил от родителя',
+  childInputLabel: 'Изменить name из потомка',
+  sendEvent: 'Отправить событие родителю',
+  childEventMessage: 'Потомок нажал кнопку.',
+  lastEvent: 'Последнее событие от потомка',
+  noEvents: 'Событий пока не было.',
+},
   },
 };

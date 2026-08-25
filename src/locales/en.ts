@@ -50,6 +50,27 @@ export const en = {
       total: 'Total',
       confirm: 'Confirm order',
       securityText: 'By clicking the button, you agree to the terms of personal data processing.',
-    },
+    },parentChild: {
+  title: 'Parent and child',
+  subtitle: 'A page for learning props and callbacks between components.',
+
+  parent: 'Parent',
+  parentTitle: 'ParentChildPage',
+  parentExplanation:
+    'The parent owns the name state and passes it to the child through props.',
+  parentInputLabel: 'Change name in parent',
+  parentState: 'Parent state',
+
+  child: 'Child',
+  childTitle: 'Child',
+  childExplanation:
+    'The child receives name through props and calls callbacks passed by the parent.',
+  receivedName: 'Received from parent',
+  childInputLabel: 'Change name from child',
+  sendEvent: 'Send event to parent',
+  childEventMessage: 'The child clicked the button.',
+  lastEvent: 'Last event from child',
+  noEvents: 'No events yet.',
+},
   },
 };
